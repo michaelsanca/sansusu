@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❤️</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Column 1 -->
+        <div class="column1">
+            <div class="container">
+                <div class="envelope-wrapper" id="envelope">
+                    <div class="envelope">
+                        <div class="letter">
+                            <div class="text">
+                                <strong>Una Cartita para ti ❤️</strong>
+                                <p> 
+                                    kayta ruwaruni ratulla qanta munakuspa, Quizá de antemano no pueda verte hoy , pero quiero que sepas que eres mi gran curiita. 14643 ❤️ 
+                                </p><br>
+
+                                <strong>
+                                    !All is Well¡
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="heart"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="column2">
+            <div class="separator-box">
+                <div class="audio-container">
+                    <audio id="loveAudio" src="te amare.mp3"></audio>
+                </div>
+                <h2>HAPPY SAN VALENTIN MI SUSU ❤️</h2>
+                <img src="https://media.tenor.com/LRDMe1QpqFYAAAAC/cat-cute.gif" alt="GIF">
+                <button class="playAudio" id="playAudio">🎶 Play Audio</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('envelope').addEventListener('click', function() {
+            this.classList.toggle('flap');
+        });
+
+        document.getElementById('playAudio').addEventListener('click', function() {
+            let audio = document.getElementById('loveAudio');
+            if (audio.paused) {
+                audio.play();
+                this.textContent = "⏸ Pause Audio";
+            } else {
+                audio.pause();
+                this.textContent = "🎶 Play Audio";
+            }
+        });
+    </script>
+</body>
+</html>
