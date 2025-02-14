@@ -1,0 +1,279 @@
+:root {
+  --primary: #fff;
+  --bg-color: rgb(77, 78, 80);
+  --bg-envelope-color: #f5edd1;
+  --envelope-tab: #ecdeb8;
+  --envelope-cover: #e6cfa7;
+  --shadow-color: rgba(0,0,0,0.2);
+  --txt-color: #444;
+  --heart-color: rgba(252, 8, 231);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+H2 {
+  color: var(--txt-color);
+  text-align: center;
+}
+
+/* Contenedor principal */
+.wrapper {
+  display: flex;
+  width: 100%;
+  height: auto;
+  min-height: 500px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Columnas */
+.column1, .column2 {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 300px;
+}
+
+.column2 {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+}
+
+/* Caja de separación */
+.separator-box {
+  width: 80%;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px var(--shadow-color);
+  padding: 20px;
+}
+
+/* Contenedor del sobre */
+.container {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.container > .envelope-wrapper {
+  background-color: var(--bg-envelope-color);
+  box-shadow: 0 0 40px var(--shadow-color);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* Sobre */
+.container > .envelope-wrapper > .envelope {
+  position: relative;
+  width: 300px;
+  height: 230px;
+}
+
+/* Parte superior del sobre */
+.container > .envelope-wrapper > .envelope::before {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  border-top: 130px solid var(--envelope-tab);
+  border-right: 150px solid transparent;
+  border-left: 150px solid transparent;
+  top: 0;
+  transform-origin: top;
+  transition: all 0.5s ease-in-out 0.7s;
+}
+
+/* Parte inferior del sobre */
+.container > .envelope-wrapper > .envelope::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  border-top: 130px solid transparent;
+  border-right: 150px solid var(--envelope-cover);
+  border-left: 150px solid var(--envelope-cover);
+  border-bottom: 100px solid var(--envelope-cover);
+  bottom: 0;
+}
+
+/* Carta */
+.letter {
+  position: absolute;
+  right: 20%;
+  bottom: 0;
+  width: 54%;
+  height: 80%;
+  background: var(--primary);
+  transition: all 1s ease-in-out;
+  padding: 20px 10px;
+  box-shadow: 0 0 10px var(--shadow-color);
+  border-radius: 5px;
+}
+
+/* Texto dentro de la carta */
+.letter > .text {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 10px;
+  color: var(--txt-color);
+  text-align: left;
+}
+
+/* Corazón animado */
+.heart {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  width: 15px;
+  height: 15px;
+  background: var(--heart-color);
+  z-index: 4;
+  transform: translate(-50%, -20%) rotate(45deg);
+  transition: transform 0.5s ease-in-out 1s;
+  box-shadow: 0 0 10px var(--shadow-color);
+  cursor: pointer;
+}
+
+/* Partes del corazón */
+.heart::before,
+.heart::after {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: var(--heart-color);
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -7.5px;
+}
+
+.heart::after {
+  right: 7.5px;
+}
+
+/* Efecto de apertura */
+.flap > .envelope::before {
+  z-index: 0;
+  transform: rotateX(180deg);
+  transition-duration: 0.5s;
+}
+
+.flap > .envelope .letter {
+  bottom: 110px;
+  transform: scale(1.5);
+  transition-delay: 1.6s;
+  z-index: 2;
+}
+
+.flap > .heart {
+  transform: rotate(90deg);
+  transition-delay: 0.4s;
+}
+
+/* Contenedor del audio */
+.audio-container {
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  display: none; /* Oculta el video */
+}
+
+/* Estilos para iframe */
+iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* Botón de audio */
+.playAudio {
+  align-items: center;
+  background-color: #fee6e3;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
+  display: flex;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  height: 48px;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  right: 90%;
+  bottom: -4%;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Sombra interactiva del botón */
+.playAudio:after {
+  background-color: #111;
+  border-radius: 8px;
+  content: "";
+  display: block;
+  height: 48px;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  top: -2px;
+  transform: translate(8px, 8px);
+  transition: transform 0.2s ease-out;
+  z-index: -1;
+}
+
+.playAudio:hover:after {
+  transform: translate(0, 0);
+}
+
+.playAudio:active {
+  background-color: #ffdeda;
+  outline: 0;
+}
+
+.playAudio:hover {
+  outline: 0;
+}
+
+/* Imagen */
+img {
+  width: 80%;
+  height: auto;
+  margin-left: 10%;
+  margin-top: 10%;
+}
+
+/* Ajuste del botón de audio */
+.playAudio {
+  margin-left: 350px;
+  margin-bottom: 10px;
+  width: 60%;
+  top: -400px;
+}
+
+/* Responsividad */
+@media (min-width: 768px) {
+  .playAudio {
+      padding: 0 40px;
+  }
+}
